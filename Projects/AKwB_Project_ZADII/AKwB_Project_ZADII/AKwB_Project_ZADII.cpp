@@ -26,7 +26,7 @@ public:
 		{
 			plik >> n;
 			int **graf1 = new int *[n];  //stworzenie tablicy dynamicznej
-			for (int i = 0; i < n; i++) //bedzie ona przechowywa≥a macierz sasiedztwa 
+			for (int i = 0; i < n; i++) //bedzie ona przechowywa≈Ça macierz sasiedztwa 
 				graf1[i] = new int[n];  //
 			graf1 = macierzsasiedztwa(n, &plik);
 
@@ -57,9 +57,9 @@ public:
 			//wyswietlanie macierzy
 			
 			cout << endl;
-			for (pom1 = 0; pom1 < n; pom1++) //zmienna pomocnicza, w tym przypadku bÍdzie oznacza≥a indeks kolumny
+			for (pom1 = 0; pom1 < n; pom1++) //zmienna pomocnicza, w tym przypadku bƒôdzie oznacza≈Ça indeks kolumny
 			{
-			for (int pom2 = 0; pom2 < n; pom2++) //zmienna pomocnicza, w tym przypadku bÍdzie oznacza≥a indeks wierszu
+			for (int pom2 = 0; pom2 < n; pom2++) //zmienna pomocnicza, w tym przypadku bƒôdzie oznacza≈Ça indeks wierszu
 			{
 
 			cout << graf1[pom1][pom2] << " ";
@@ -82,9 +82,9 @@ public:
 		for (int i = 0; i < n; i++) // tworzenie tablicy dwuwymiarowej
 			msas[i] = new int[n];
 		
-		for (int pom1 = 0; pom1 < n; pom1++) //zmienna pomocnicza, w tym przypadku bÍdzie oznacza≥a indeks kolumny
+		for (int pom1 = 0; pom1 < n; pom1++) //zmienna pomocnicza, w tym przypadku bƒôdzie oznacza≈Ça indeks kolumny
 		{
-			for (int pom2 = 0; pom2 < n; pom2++) //zmienna pomocnicza, w tym przypadku bÍdzie oznacza≥a indeks wierszu
+			for (int pom2 = 0; pom2 < n; pom2++) //zmienna pomocnicza, w tym przypadku bƒôdzie oznacza≈Ça indeks wierszu
 			{
 				plik >> pom3;
 				msas[pom1][pom2] = pom3;
@@ -97,13 +97,13 @@ public:
 	/*list <int> *listasasiedztwa(int **macierzsasiedztwa, int n)//tworzy liste nastepnikow z macierzy sasiedztwa
 	{
 
-		list <int> *wierzcholki = new list <int>[n + 1]; //utworzenie listy ktora bedzie przechowywa≥a wierzcho≥ki
+		list <int> *wierzcholki = new list <int>[n + 1]; //utworzenie listy ktora bedzie przechowywa≈Ça wierzcho≈Çki
 		for (int pom = 0; pom < n; pom++)
 		{
 			for (int pom2 = 0; pom2 < n; pom2++)
 			{
 				if (macierzsasiedztwa[pom][pom2] == 1)
-					wierzcholki[pom].push_back(pom2); //wstawianie na listÍ nastÍpnikÛw danego wierzcho≥ka
+					wierzcholki[pom].push_back(pom2); //wstawianie na listƒô nastƒôpnik√≥w danego wierzcho≈Çka
 			}
 		}
 
@@ -133,7 +133,7 @@ public:
 							if (row(graf, pom1, pom2, n))
 							{
 								for (int pom4 = 0; pom4 < n; pom4++)
-									if (graf[pom4][pom1] == 1 && graf[pom4][pom1] == graf[pom4][pom1])
+									if (graf[pom4][pom1] == 1 && graf[pom4][pom1] == graf[pom4][pom2])
 										line = false;
 							}
 							else
