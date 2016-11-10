@@ -31,11 +31,17 @@ public:
 			graf1 = macierzsasiedztwa(n, &plik);
 
 			plik.close();
-			list <int> *nastepniki = new list <int>[n + 1]; //lista nastepnikow kazdego wierzcholka
-			nastepniki = listasasiedztwa(graf1, n);
-
+			//list <int> *nastepniki = new list <int>[n + 1]; //lista nastepnikow kazdego wierzcholka
+			//nastepniki = listasasiedztwa(graf1, n);
+			if (adjoint(graf1, n))
+			{
+					cout << "graf jest sprzezony" << endl;
+			}
+			else
+				cout << "Graf nie jest sprzezony" << endl;
 			
 			//wywswietlanie listy
+			/*
 			list<int>::iterator it; //iterator listy
 			for (int i = 0; i < n; i++)
 			{
@@ -47,9 +53,10 @@ public:
 
 			cout << endl;
 			}
-			
-			/*
+			*/
 			//wyswietlanie macierzy
+			
+			cout << endl;
 			for (pom1 = 0; pom1 < n; pom1++) //zmienna pomocnicza, w tym przypadku bêdzie oznacza³a indeks kolumny
 			{
 			for (int pom2 = 0; pom2 < n; pom2++) //zmienna pomocnicza, w tym przypadku bêdzie oznacza³a indeks wierszu
@@ -59,7 +66,7 @@ public:
 			}
 			cout << endl;
 			}
-			*/
+			
 			
 		}
 
@@ -86,7 +93,8 @@ public:
 
 		return msas; // zwracamy macierz
 	}
-	list <int> *listasasiedztwa(int **macierzsasiedztwa, int n)//tworzy liste nastepnikow z macierzy sasiedztwa
+	//tworzenie listy
+	/*list <int> *listasasiedztwa(int **macierzsasiedztwa, int n)//tworzy liste nastepnikow z macierzy sasiedztwa
 	{
 
 		list <int> *wierzcholki = new list <int>[n + 1]; //utworzenie listy ktora bedzie przechowywa³a wierzcho³ki
@@ -103,7 +111,62 @@ public:
 
 		return wierzcholki;
 	}
+	*/
+	bool adjoint(int **graf, int n)
+	{
+		bool line = true;
+		for (int pom1 = 0; pom1 < n; pom1++)
+		{
+			for (int pom2 = 0; pom2 < n; pom2++)
+			{
+				for (int pom3 = 0; pom3 < n; pom3++)
+				{
+					if (graf[pom1][pom3] > 1)
+					{
+						cout << "Multigraf!!" << endl;
+						return false;
+					}
+					else
+					{ 
+						if (graf[pom1][pom3] == 1 && graf[pom1][pom3] == graf[pom2][pom3])
+						{
+							if (row(graf, pom1, pom2, n))
+							{
+								for (int pom4 = 0; pom4 < n; pom4++)
+									if (graf[pom4][pom1] == 1 && graf[pom4][pom1] == graf[pom4][pom1])
+										line = false;
+							}
+							else
+								return false;
+							break;
+						
+						}
+					}
+				}
 
+			}
+		}
+		if (line)
+		{
+			cout << "Graf jest liniowy i jest to ";
+			return true;
+		}
+		else
+		{
+			cout << "Graf nie jest liniowy i jest to ";
+			return true;
+		}
+		
+	}
+	
+	bool row(int **graf, int pom1, int pom2, int n)
+	{
+		for (int i = 0 ; i < n; i++)
+			if (graf[pom1][i] != graf[pom2][i])
+				return false;
+			else
+				return true;
+	}
 };
 
 
