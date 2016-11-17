@@ -117,7 +117,7 @@ public:
 		bool line = true;
 		for (int pom1 = 0; pom1 < n; pom1++)
 		{
-			for (int pom2 = 0; pom2 < n; pom2++)
+			for (int pom2 = 0; pom2+1 < n; pom2++)
 			{
 				for (int pom3 = 0; pom3 < n; pom3++)
 				{
