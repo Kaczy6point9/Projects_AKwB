@@ -234,13 +234,13 @@ public:
 				 max = final_graph[pom1].second;
 		 }
 
-		 int **graforyginalny = new int *[max];  //stworzenie tablicy dynamicznej
-		 for (int i = 0; i < max; i++) //bedzie ona przechowywała macierz sasiedztwa 
-			 graforyginalny[i] = new int[max]; 
+		 int **graforyginalny = new int *[max+1];  //stworzenie tablicy dynamicznej
+		 for (int i = 0; i < max+1; i++) //bedzie ona przechowywała macierz sasiedztwa 
+			 graforyginalny[i] = new int[max+1]; 
 
-		 for (int i = 0; i < max; i++)
+		 for (int i = 0; i < max+1; i++)
 		 {
-			 for (int j = 0; j < max; j++)
+			 for (int j = 0; j < max+1; j++)
 				 graforyginalny[i][j] = 0;
 		 }
 			
@@ -254,9 +254,10 @@ public:
 			 cout << get<0>(i) << " " << get<1>(i) << " " << endl;
 		 }
 		 
-		 for (int pom1 = 0; pom1 < max; pom1++) //zmienna pomocnicza, w tym przypadku będzie oznaczała indeks kolumny
+		 cout << endl;
+		 for (int pom1 = 0; pom1 < max+1; pom1++) //zmienna pomocnicza, w tym przypadku będzie oznaczała indeks kolumny
 		 {
-			 for (int pom2 = 0; pom2 < max; pom2++) //zmienna pomocnicza, w tym przypadku będzie oznaczała indeks wierszu
+			 for (int pom2 = 0; pom2 < max+1; pom2++) //zmienna pomocnicza, w tym przypadku będzie oznaczała indeks wierszu
 			 {
 
 				 cout << graforyginalny[pom1][pom2] << " ";
