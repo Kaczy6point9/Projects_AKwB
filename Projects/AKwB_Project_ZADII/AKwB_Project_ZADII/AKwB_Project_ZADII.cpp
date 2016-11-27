@@ -3,9 +3,11 @@
 
 #include "stdafx.h"
 #include <iostream>
-#include <list>
 #include <fstream>
 #include <string>
+#include <vector>
+#include <tuple>
+
 
 using namespace std;
 
@@ -13,11 +15,13 @@ class graf
 {
 public:
 	fstream plik;
+	int n; //ilosc wierzcholkow
+	
 	graf()
 	{
-		int n; //ilosc wierzcholkow
+		
 		int pom1, pom2; //temp zmienne pomocnicze
-		plik.open("X:/Projects/AKwB_Project_ZADII/AKwB_Project_ZADII/graf.txt");
+		plik.open("C:/Users/Kaczy/Documents/Visual Studio 2013/Projects/AKwB_Project_ZADII/AKwB_Project_ZADII/graf.txt");
 		if (!plik.good())
 		{
 			cout << "Blad pliku" << endl;
@@ -28,32 +32,17 @@ public:
 			int **graf1 = new int *[n];  //stworzenie tablicy dynamicznej
 			for (int i = 0; i < n; i++) //bedzie ona przechowywała macierz sasiedztwa 
 				graf1[i] = new int[n];  //
-			graf1 = macierzsasiedztwa(n, &plik);
+			graf1 = macierzsasiedztwa(n, &plik); //wywołanie funkcji tworzącej graf
 
 			plik.close();
-			//list <int> *nastepniki = new list <int>[n + 1]; //lista nastepnikow kazdego wierzcholka
-			//nastepniki = listasasiedztwa(graf1, n);
-			if (adjoint(graf1, n))
+			if (adjointline(graf1, n)) // wywołanie funkcji która sprawdza czy graf jest sprzężony i czy jest liniowy
 			{
 					cout << "graf jest sprzezony" << endl;
 			}
 			else
 				cout << "Graf nie jest sprzezony" << endl;
 			
-			//wywswietlanie listy
-			/*
-			list<int>::iterator it; //iterator listy
-			for (int i = 0; i < n; i++)
-			{
-			cout << i+1 << ": ";
-			for (it = nastepniki[i].begin(); it != nastepniki[i].end(); ++it)
-			{
-			cout << *it+1 << " "; //wypisanie listy nastepnikow
-			}
-
-			cout << endl;
-			}
-			*/
+			
 			//wyswietlanie macierzy
 			
 			cout << endl;
@@ -67,6 +56,8 @@ public:
 			cout << endl;
 			}
 			
+			cout << endl;
+			graforyginalny(graf1, n);
 			
 		}
 
@@ -75,6 +66,7 @@ public:
 
 		
 	}
+	
 	int **macierzsasiedztwa(int n, fstream *file) //gdzie n ilosc wierzcholkow
 	{
 		int pom3; //temp zmienne pomocnicze
@@ -93,52 +85,35 @@ public:
 
 		return msas; // zwracamy macierz
 	}
-	//tworzenie listy
-	/*list <int> *listasasiedztwa(int **macierzsasiedztwa, int n)//tworzy liste nastepnikow z macierzy sasiedztwa
+	
+	
+	bool adjointline(int **graf, int n) //funkcja sprawdzająca czy graf jest grafem sprzeżonym 
 	{
-
-		list <int> *wierzcholki = new list <int>[n + 1]; //utworzenie listy ktora bedzie przechowywała wierzchołki
-		for (int pom = 0; pom < n; pom++)
+		bool line = true; //Zakładamy że graf jest liniowy od początku
+		for (int pom1 = 0; pom1 < n; pom1++)//pętla przeskakująca po wierzchołkach
 		{
-			for (int pom2 = 0; pom2 < n; pom2++)
+			for (int pom2 = 0; pom2+1 < n; pom2++)//pętla przeskakująca po drugim wierzchołku
 			{
-				if (macierzsasiedztwa[pom][pom2] == 1)
-					wierzcholki[pom].push_back(pom2); //wstawianie na listę następników danego wierzchołka
-			}
-		}
-
-		
-
-		return wierzcholki;
-	}
-	*/
-	bool adjoint(int **graf, int n)
-	{
-		bool line = true;
-		for (int pom1 = 0; pom1 < n; pom1++)
-		{
-			for (int pom2 = 0; pom2+1 < n; pom2++)
-			{
-				for (int pom3 = 0; pom3 < n; pom3++)
+				for (int pom3 = 0; pom3 < n; pom3++)//pętla skacząca po następnikach wierzchołka
 				{
-					if (graf[pom1][pom3] > 1)
+					if (graf[pom1][pom3] > 1)//jeżli w pliku występuje wartość wskazująca, że podany graf jest multigrafem
 					{
-						cout << "Multigraf!!" << endl;
-						return false;
+						cout << "Multigraf!! " << endl;
+						return false; //zwracamy że graf nie jest sprzężony
 					}
 					else
 					{ 
-						if (graf[pom1][pom3] == 1 && graf[pom1][pom3] == graf[pom2][pom3])
+						if (graf[pom1][pom3] == 1 && graf[pom1][pom3] == graf[pom2][pom3])//Sprawdzamy czy dwa wierzchołki mają wspólnych następników 
 						{
-							if (row(graf, pom1, pom2, n))
+							if (row(graf, pom1, pom2, n))//Jeśli wierzchołki mają wspólnych następników, sprawdzamy czy wszystkie następniki są takie same
 							{
-								for (int pom4 = 0; pom4 < n; pom4++)
-									if (graf[pom4][pom1] == 1 && graf[pom4][pom1] == graf[pom4][pom2])
-										line = false;
+								for (int pom4 = 0; pom4 < n; pom4++) 
+									if (graf[pom4][pom1] == 1 && graf[pom4][pom1] == graf[pom4][pom2])//jeśli wszystkie następniki są takie same, sprawdzamy czy ich poprzedniki są zbiorem niepustym
+										line = false; //jeżeli poprzedniki są zbiorem niepustym wtedy graf nie jest liniowy
 							}
 							else
-								return false;
-							break;
+								return false; //jeśli następniki nie są takie same zwracamy, że graf nie jest sprzężony
+							break;//jeśli sprawdziło następniki i zwróciło true, przerywamy sprawdzanie reszty kolumny i przechodzimy do kolejnych wierzchołków
 						
 						}
 					}
@@ -146,7 +121,7 @@ public:
 
 			}
 		}
-		if (line)
+		if (line) //co ma wypisywać na ekran jeśli jest linowy, a co jeśli nie
 		{
 			cout << "Graf jest liniowy i jest to ";
 			return true;
@@ -159,15 +134,144 @@ public:
 		
 	}
 	
-	bool row(int **graf, int pom1, int pom2, int n)
+	bool row(int **graf, int pom1, int pom2, int n)//funkcja sprawdzająca wszystkich następników
 	{
 		for (int i = 0 ; i < n; i++)
-			if (graf[pom1][i] != graf[pom2][i])
+			if (graf[pom1][i] != graf[pom2][i]) //jeżeli następniki są różne zwraca fałsz
 				return false;
 			else
-				return true;
+				return true; //jeżeli wzsystkie są takie same to prawdę
 	}
+
+	
+	
+	int **graforyginalny(int **graf, int n)
+	{
+		vector <tuple<int, int, int>> graforg;
+		int x = 0, y = x+1;
+		for (int pom1 = 0; pom1 < n; pom1++)
+		{ 
+			graforg.push_back(make_tuple(pom1, x, y));
+			x++;
+			y++;
+		}
+		for (int pom1 = 0; pom1 < n; pom1++)
+		{
+			for (int pom2 = 0; pom2 < n; pom2++)
+			{
+				
+				if (graf[pom1][pom2] == 1)
+				{
+					for (auto& x : graforg)
+					{
+						if (get<0>(x) == pom1)
+						{
+							for (auto& y : graforg)
+							{
+								if (get<0>(y) == pom2)
+								{
+									if (get<2>(x) < get<1>(y))
+									{
+										get<1>(y) = get<2>(x);
+									}
+									else
+										get<2>(x) = get<1>(y);
+								}
+							}
+						}
+
+					}
+				}
+			}
+		}
+						
+		vector <pair<int, int>> final_graph;
+	
+
+		 for (auto& i : graforg)
+		{
+			 final_graph.push_back(make_pair(get<1>(i), get<2>(i)));
+		}
+		 
+		 int min = 0;
+		 int max = 0;
+		 int tmp = 0;
+		 for (int pom1 = 0; pom1 < final_graph.size(); pom1++)
+		 {
+			 if (final_graph[pom1].first > max)
+				 max = final_graph[pom1].first;
+			 if (final_graph[pom1].second > max)
+				 max = final_graph[pom1].second;
+		 }
+		 
+		 while (min <= max)
+		 {
+			 for (int pom1 = 0; pom1 < final_graph.size(); pom1++)
+			 {
+				 if (final_graph[pom1].second == min || final_graph[pom1].first == min)
+				 {
+					 for (pom1 = 0; pom1 < final_graph.size(); pom1++)
+					 {
+						 if (final_graph[pom1].first == min)
+							 final_graph[pom1].first = tmp;
+						 if (final_graph[pom1].second == min)
+							 final_graph[pom1].second = tmp;
+					 }
+					 tmp++;
+					 min++;
+					 break;
+				 }
+				 else if (pom1 == final_graph.size() - 1)
+					 min++;
+			 }
+		 }
+		 max = 0;
+		 for(int pom1 = 0; pom1 < final_graph.size(); pom1++)
+		 {
+			 if (final_graph[pom1].first > max)
+				 max = final_graph[pom1].first;
+			 if (final_graph[pom1].second > max)
+				 max = final_graph[pom1].second;
+		 }
+
+		 int **graforyginalny = new int *[max];  //stworzenie tablicy dynamicznej
+		 for (int i = 0; i < max; i++) //bedzie ona przechowywała macierz sasiedztwa 
+			 graforyginalny[i] = new int[max]; 
+
+		 for (int i = 0; i < max; i++)
+		 {
+			 for (int j = 0; j < max; j++)
+				 graforyginalny[i][j] = 0;
+		 }
+			
+		 for (auto& i : final_graph)
+		 {
+			 graforyginalny[get<0>(i)][get<1>(i)]+=1;
+		 }
+		
+		 for (const auto& i : final_graph)
+		 {
+			 cout << get<0>(i) << " " << get<1>(i) << " " << endl;
+		 }
+		 
+		 for (int pom1 = 0; pom1 < max; pom1++) //zmienna pomocnicza, w tym przypadku będzie oznaczała indeks kolumny
+		 {
+			 for (int pom2 = 0; pom2 < max; pom2++) //zmienna pomocnicza, w tym przypadku będzie oznaczała indeks wierszu
+			 {
+
+				 cout << graforyginalny[pom1][pom2] << " ";
+			 }
+			 cout << endl;
+		 }
+		
+	
+		
+		return graforyginalny;
+	}
+
+	
 };
+
 
 
 
