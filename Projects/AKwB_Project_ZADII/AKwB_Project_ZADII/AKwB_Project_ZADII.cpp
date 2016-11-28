@@ -13,9 +13,13 @@ using namespace std;
 
 class graf
 {
+private: 
+	int n; //ilosc wierzcholkow
+	int wielkoscorg; //wielkosc macierzy oryginalnej
+	
 public:
 	fstream plik;
-	int n; //ilosc wierzcholkow
+	
 	
 	graf()
 	{
@@ -29,6 +33,7 @@ public:
 		else
 		{
 			plik >> n;
+			this->n = n;
 			int **graf1 = new int *[n];  //stworzenie tablicy dynamicznej
 			for (int i = 0; i < n; i++) //bedzie ona przechowywała macierz sasiedztwa 
 				graf1[i] = new int[n];  //
@@ -233,7 +238,7 @@ public:
 			 if (final_graph[pom1].second > max)
 				 max = final_graph[pom1].second;
 		 }
-
+		this->wartoscorg = max + 1;
 		 int **graforyginalny = new int *[max+1];  //stworzenie tablicy dynamicznej
 		 for (int i = 0; i < max+1; i++) //bedzie ona przechowywała macierz sasiedztwa 
 			 graforyginalny[i] = new int[max+1]; 
