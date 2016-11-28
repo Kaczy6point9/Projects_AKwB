@@ -152,8 +152,8 @@ public:
 		for (int pom1 = 0; pom1 < n; pom1++)
 		{ 
 			graforg.push_back(make_tuple(pom1, x, y));
-			x++;
-			y++;
+			x=pom1*2;
+			y=x+1;
 		}
 		for (int pom1 = 0; pom1 < n; pom1++)
 		{
