@@ -25,7 +25,7 @@ public:
 	{
 
 		int pom1, pom2; //temp zmienne pomocnicze
-		plik.open("C:/Users/Kaczy/Documents/Visual Studio 2013/Projects/AKwB_Project_ZADII/AKwB_Project_ZADII/graf.txt");
+		plik.open("X:/Projects/AKwB_Project_ZADII/AKwB_Project_ZADII/graf2.txt");
 		if (!plik.good())
 		{
 			cout << "Blad pliku" << endl;
@@ -40,6 +40,21 @@ public:
 			graf1 = macierzsasiedztwa(n, &plik); //wywołanie funkcji tworzącej graf
 
 			plik.close();
+			//wyswietlanie macierzy
+
+			
+			for (pom1 = 0; pom1 < n; pom1++) //zmienna pomocnicza, w tym przypadku będzie oznaczała indeks kolumny
+			{
+				for (int pom2 = 0; pom2 < n; pom2++) //zmienna pomocnicza, w tym przypadku będzie oznaczała indeks wierszu
+				{
+
+					cout << graf1[pom1][pom2] << " ";
+				}
+				cout << endl;
+			}
+
+			cout << endl;
+
 			if (adjoint(graf1, n)) // wywołanie funkcji która sprawdza czy graf jest sprzężony i czy jest liniowy
 			{
 				cout << "graf jest sprzezony ";
@@ -47,7 +62,7 @@ public:
 					cout << "i jest liniowy" << endl;
 
 				cout << endl;
-				plik.open("C:/Users/Kaczy/Documents/Visual Studio 2013/Projects/AKwB_Project_ZADII/AKwB_Project_ZADII/org.txt", ios::out);
+				plik.open("X:/Projects/AKwB_Project_ZADII/AKwB_Project_ZADII/graforg.txt", ios::out);
 				if (!plik.good())
 				{
 					cout << "Blad pliku" << endl;
@@ -63,21 +78,10 @@ public:
 				cout << "Graf nie jest sprzezony" << endl;
 
 
-			//wyswietlanie macierzy
+		
 
-			cout << endl;
-			for (pom1 = 0; pom1 < n; pom1++) //zmienna pomocnicza, w tym przypadku będzie oznaczała indeks kolumny
-			{
-				for (int pom2 = 0; pom2 < n; pom2++) //zmienna pomocnicza, w tym przypadku będzie oznaczała indeks wierszu
-				{
 
-					cout << graf1[pom1][pom2] << " ";
-				}
-				cout << endl;
-			}
 
-			
-			
 
 		}
 
@@ -121,7 +125,7 @@ public:
 					}
 					else
 					{
-						if (graf[pom1][pom3] == 1 && graf[pom1][pom3] == graf[pom2][pom3])//Sprawdzamy czy dwa wierzchołki mają wspólnych następników 
+						if (graf[pom1][pom3] == 1 && graf[pom1][pom3] == graf[pom2][pom3] && pom1 != pom2)//Sprawdzamy czy dwa wierzchołki mają wspólnych następników 
 						{
 							if (!row(graf, pom1, pom2, n))//Jeśli wierzchołki mają wspólnych następników, sprawdzamy czy wszystkie następniki są takie same
 								return false; //jeśli następniki nie są takie same zwracamy, że graf nie jest sprzężony
@@ -133,7 +137,7 @@ public:
 
 			}
 		}
-		
+
 		return true;
 	}
 
@@ -145,9 +149,9 @@ public:
 			{
 				for (int pom3 = 0; pom3 < n; pom3++)//pętla skacząca po następnikach wierzchołka
 				{
-					if (row(graf, pom1, pom2, n) && graf[pom1][pom3] == 1 && graf[pom1][pom3] == graf[pom2][pom3] && graf[pom3][pom1] == 1 && graf[pom3][pom1] == graf[pom3][pom2])
+					if ((row(graf, pom1, pom2, n) && graf[pom1][pom3] == 1 && graf[pom1][pom3] == graf[pom2][pom3]) && (graf[pom3][pom1] == 1 && graf[pom3][pom1] == graf[pom3][pom2]))
 						return false; //jeżeli poprzedniki są zbiorem niepustym wtedy graf nie jest liniowy
-							
+
 				}
 			}
 		}
@@ -157,10 +161,11 @@ public:
 	bool row(int **graf, int pom1, int pom2, int n)//funkcja sprawdzająca wszystkich następników
 	{
 		for (int i = 0; i < n; i++)
-		if (graf[pom1][i] != graf[pom2][i]) //jeżeli następniki są różne zwraca fałsz
-			return false;
-		else
-			return true; //jeżeli wzsystkie są takie same to prawdę
+		{
+			if (graf[pom1][i] != graf[pom2][i]) //jeżeli następniki są różne zwraca fałsz
+				return false;
+		}
+				return true; //jeżeli wzsystkie są takie same to prawdę
 	}
 
 	int **graforyginalny(int **graf, int n)
@@ -172,7 +177,7 @@ public:
 			x = pom1 * 2;
 			y = x + 1;
 			graforg.push_back(make_tuple(pom1, x, y));
-			
+
 		}
 		for (int pom1 = 0; pom1 < n; pom1++)
 		{
@@ -238,7 +243,7 @@ public:
 					}
 					min++;
 					tmp++;
-					
+
 					break;
 				}
 				else if (pom1 == final_graph.size() - 1)
@@ -293,8 +298,8 @@ public:
 	void zapisdopliku(int **graf, fstream *file)
 	{
 
-		
-		
+
+
 		*file << wielkoscorg << endl;
 		for (int pom1 = 0; pom1 < wielkoscorg; pom1++)
 		{
@@ -305,7 +310,7 @@ public:
 			*file << endl;
 		}
 
-		
+
 		cout << "graf zapisany" << endl;
 
 	}
@@ -322,4 +327,3 @@ int _tmain(int argc, _TCHAR* argv[])
 	delete graf1;
 	return 0;
 }
-
