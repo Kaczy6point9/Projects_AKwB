@@ -1,0 +1,34 @@
+﻿Build started 24-Jan-17 7:40:18 PM.
+     1>Project "C:\Users\Kaczy\documents\visual studio 2013\Projects\AKwB_Project_ZADIII\AKwB_Project_ZADIII\AKwB_Project_ZADIII.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         E:\Programy\VisualStudio\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\AKwB_Project_ZADIII.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt AKwB_Project_ZADIII.cpp
+         AKwB_Project_ZADIII.cpp
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(145): warning C4018: '>=' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(161): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(249): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(298): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(333): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(372): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(374): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(386): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(398): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(418): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(441): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(457): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(465): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(493): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(499): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(506): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(517): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(523): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(530): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\kaczy\documents\visual studio 2013\projects\akwb_project_zadiii\akwb_project_zadiii\akwb_project_zadiii.cpp(548): warning C4018: '<' : signed/unsigned mismatch
+       Link:
+         E:\Programy\VisualStudio\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Kaczy\documents\visual studio 2013\Projects\AKwB_Project_ZADIII\Debug\AKwB_Project_ZADIII.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Kaczy\documents\visual studio 2013\Projects\AKwB_Project_ZADIII\Debug\AKwB_Project_ZADIII.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Kaczy\documents\visual studio 2013\Projects\AKwB_Project_ZADIII\Debug\AKwB_Project_ZADIII.lib" /MACHINE:X86 Debug\AKwB_Project_ZADIII.obj
+         Debug\stdafx.obj
+         AKwB_Project_ZADIII.vcxproj -> C:\Users\Kaczy\documents\visual studio 2013\Projects\AKwB_Project_ZADIII\Debug\AKwB_Project_ZADIII.exe
+     1>Done Building Project "C:\Users\Kaczy\documents\visual studio 2013\Projects\AKwB_Project_ZADIII\AKwB_Project_ZADIII\AKwB_Project_ZADIII.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.92
