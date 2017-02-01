@@ -270,7 +270,7 @@ public:
 	
 	Graph(Instance* new_instance, int window)
 	{
-		int seq_num;
+		int seq_num; //ilosc sekwencji
 		seq_num = new_instance->get_size();
 		for(int sequence = 0; sequence < seq_num; sequence++)
 		{
@@ -329,10 +329,10 @@ public:
 					continue;
 				}
 				string tmp_lable = vertices[i]->get_label();
-				int counter = 0;
+				int counter = 0; //indeks nukleotydu
 				for(int k = 0; counter < tmp_lable.size(); k++)
 				{
-					deletion_counter = k -counter;
+					deletion_counter = k - counter;
 					if(deletion_counter > max_deletion_inside)
 					{
 						marker = 1;
@@ -492,13 +492,13 @@ public:
 	{
 		for (int i = 0; i < this->clique_series[0].size(); i++)
 		{
-			if(this->clique_series[0][i] == 0)
+			if(this->clique_series[0][i] == 0) //czy jest co porzeszać w lewo
 				return;
-			if (this->vertices[this->clique_series[0][i]]->get_seq_index() != this->vertices[this->clique_series[0][i] - 1]->get_seq_index())
+			if (this->vertices[this->clique_series[0][i]]->get_seq_index() != this->vertices[this->clique_series[0][i] - 1]->get_seq_index()) //jeżeli sekwencja indeks niżej nie jest taka sama
 				return;
 			for (int j = i + 1; j < this->clique_series[0].size(); j++)
 			{
-				if (matrix[this->clique_series[0][i] - 1][this->clique_series[0][j] - 1] != 1)
+				if (matrix[this->clique_series[0][i] - 1][this->clique_series[0][j] - 1] != 1)//jeżeli wierzchołki o indeksie niżej nie są połączone
 					return;
 			}
 		}
@@ -514,15 +514,15 @@ public:
 
 	void look_right(int **matrix)
 	{
-		for (int i = 0; i < this->clique_series[this->clique_series.size() - 1].size(); i++)
+		for (int i = 0; i < this->clique_series[this->clique_series.size() - 1].size(); i++) // do czasu kiedy moze isc w prawo idz w prawo
 		{
-			if (clique_series[this->clique_series.size() - 1][i] == this->vertices.size() - 1)
+			if (clique_series[this->clique_series.size() - 1][i] == this->vertices.size() - 1) //jezeli przekracza rozmiar
 				return;
 			if(this->vertices[this->clique_series[this->clique_series.size() - 1][i]]->get_seq_index() != this->vertices[this->clique_series[this->clique_series.size() - 1][i]+1]->get_seq_index())
 				return;
 			for (int j = i + 1; j < this->clique_series[this->clique_series.size() - 1].size(); j++)
 				{
-					if (matrix[this->clique_series[this->clique_series.size() - 1][i] + 1][this->clique_series[this->clique_series.size() - 1][j] + 1] != 1)
+					if (matrix[this->clique_series[this->clique_series.size() - 1][i] + 1][this->clique_series[this->clique_series.size() - 1][j] + 1] != 1) //jeżeli wierzchołki nie są połączone
 						return;
 				}
 		}

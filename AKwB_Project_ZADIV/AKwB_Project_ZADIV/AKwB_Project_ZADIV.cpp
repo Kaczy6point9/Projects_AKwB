@@ -136,7 +136,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector <int> to_use;
 	srand(time(NULL));
 	fstream read_instance;
-	read_instance.open("ins-PDP-11a-asc.txt", ios::in);
+	read_instance.open("ins-PDP-12a-asc.txt", ios::in);
 	if (read_instance)
 	{
 		while (read_instance)
